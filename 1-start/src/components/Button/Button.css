@@ -1,0 +1,15 @@
+.search {
+  padding: 16px 32px;
+  color: #FFFFFF;
+  background: #7B6EF6;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  border-radius: 12px;
+  border: none;
+}
+
+.search:hover{
+    background: #8077d6;
+}
