@@ -1,9 +1,7 @@
 import './Button.css';
-function Button() {
+function Button({text, onClick}) {
   return (
-    <>
-      <button className='search'>Искать</button>
-    </>
+      <button className='search' onClick={onClick}>{text}</button>
   );
 }
 

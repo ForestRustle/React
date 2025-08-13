@@ -1,0 +1,36 @@
+.search-form {
+	min-width: 384px;
+}
+
+.search-form__input {
+	border-radius: 12px;
+	border: 1px solid #323B54;
+	padding: 22px 16px;
+	min-width: 384px;
+	background: inherit;
+}
+
+.search-form__input::placeholder {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	padding-left: 16px;
+	color: #475069;
+}
+
+.input-wrapper {
+	position: relative;
+}
+
+.input-logo {
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.search-form__input {
+	padding-left: 32px;
+
+}
