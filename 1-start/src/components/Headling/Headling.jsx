@@ -1,5 +1,5 @@
 import './Headling.css';
-function App() {
+function Headling() {
   return (
     <>
       <h1 className="headling">Поиск</h1>
@@ -7,4 +7,4 @@ function App() {
   );
 }
 
-export default App;
+export default Headling;
