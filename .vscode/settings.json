@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.multiRootWorkspaceName": "My React",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "eslint.experimental.useFlatConfig": true
+}
