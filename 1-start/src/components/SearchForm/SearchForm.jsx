@@ -1,7 +1,7 @@
 import './SearchForm.css';
 import { useState } from 'react';
 
-function SearchForm({ placeholder,onSearch, logo }) {
+function SearchForm({ placeholder,onSearch, logo,children }) {
   const [inputData, setInputData] = useState('');
 
   const inputChange = (event) => {
@@ -26,6 +26,7 @@ function SearchForm({ placeholder,onSearch, logo }) {
         value={inputData}
         onChange={inputChange}
         />
+      {children}
       </div>
     </form>
   );
