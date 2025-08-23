@@ -1,5 +1,6 @@
-import './SearchForm.css';
+import styles from './SearchForm.module.css';
 import { useState } from 'react';
+import cs from 'classnames';
 
 function SearchForm({ placeholder,onSearch, logo,children }) {
   const [inputData, setInputData] = useState('');
@@ -16,19 +17,21 @@ function SearchForm({ placeholder,onSearch, logo,children }) {
     console.log(inputData);
   };
   return (
-    <form className="search-form" onSubmit={inputSubmit}>
-      <div className="input-wrapper">
-        {logo && <span className='input-logo'>{logo}</span>}
-      <input
-        type="text"
-        className="search-form__input"
-        placeholder={placeholder}
-        value={inputData}
-        onChange={inputChange}
-        />
-      {children}
-      </div>
-    </form>
+    <div className={cs(styles['search-row'])}>
+      <form className={cs(styles['search-form'])} onSubmit={inputSubmit}>
+        <div className={cs(styles['input-wrapper'])}>
+          {logo && <span className={cs(styles['input-logo'])}>{logo}</span>}
+          <input
+            type="text"
+            className={cs(styles['search-form__input'])}
+            placeholder={placeholder}
+            value={inputData}
+            onChange={inputChange}
+          />
+          {children}
+        </div>
+      </form>
+    </div>
   );
 }
 

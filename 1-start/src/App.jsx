@@ -62,7 +62,7 @@ function App() {
           'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'
         }
       />
-      <div className="search-row">
+      <div className="search-ow">
         <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}
         >
           <Button text={'Искать'} onClick={handleButtonClick} />

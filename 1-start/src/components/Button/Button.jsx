@@ -1,7 +1,8 @@
-import './Button.css';
+import styles from './Button.module.css';
+import cs from 'classnames';
 function Button({text, onClick}) {
   return (
-      <button className='search' onClick={onClick}>{text}</button>
+      <button className={cs(styles.search)} onClick={onClick}>{text}</button>
   );
 }
 
