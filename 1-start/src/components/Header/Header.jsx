@@ -1,14 +1,14 @@
-import styes from './Header.module.css';
+import styles from './Header.module.css';
 import cs from 'classnames';
 
 function Header() {
   return (
-    <header className={cs(styes.header)}>
+    <header className={cs(styles.header)}>
       <img src="./bookmark.svg" alt="Логотип закладок" />
-      <div className={cs(styes.header_links)}>
+      <div className={cs(styles.header_links)}>
         <a href="#">Поиск фильмов</a>
         <a href="#">Мои фильмы</a>
-        <div className={cs(styes.login)}>
+        <div className={cs(styles.login)}>
           <a href="#">
             Войти
             <img src="./login.svg" alt="Иконка логина" />
