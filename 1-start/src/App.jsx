@@ -6,6 +6,8 @@ import Button from './components/Button/Button';
 import Header from './components/Header/Header';
 import SearchForm from './components/SearchForm/SearchForm';
 import Cards from './components/Cards/Cards';
+import { useLocalStorage } from './hooks/use-localStortage.hook';
+
 function App() {
   const dataFilms = [
     {
@@ -49,28 +51,33 @@ function App() {
       img: './src/assets/img/Two And a Half Men.png',
     },
   ];
+
   const handleButtonClick = () => {
     console.log('Button clicked');
   };
-  
+  const [user, saveUser, logOut] = useLocalStorage('user');
   return (
     <div className="wrapper">
-      <Header />
+      <Header user={ user} logOut = {logOut} />
       <Headling />
       <Paragraph
         text={
           'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'
         }
       />
-      <div className="search-ow">
-        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}
-        >
+      <div className="search-row">
+        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
           <Button text={'Искать'} onClick={handleButtonClick} />
         </SearchForm>
-        {/* <SearchForm placeholder={'Введите название'}/> */}
-        
       </div>
-      <Cards dataFilms={dataFilms}/>
+
+      <div className="search-row">
+        <SearchForm placeholder={'Ваше имя'} logo={<FilmIcon/>} onLogin={(userData)=> saveUser(userData)}>
+          <Button text={'Войти в профиль'} onClick={handleButtonClick} />
+        </SearchForm>
+      </div>
+
+      <Cards dataFilms={dataFilms} />
     </div>
   );
 }
