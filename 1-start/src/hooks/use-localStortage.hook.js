@@ -21,8 +21,8 @@ export function useLocalStorage(key) {
 	const loginProfile = (profileId) => {
 		const updateProfiles = data.map(el =>
 			el.id === profileId
-				? { ...profileId, isLogined: true }
-				: { ...profileId, isLogined: false }
+				? { ...el, isLogined: true }
+				: { ...el, isLogined: false }
 		)
 		saveData(updateProfiles);
 	}
