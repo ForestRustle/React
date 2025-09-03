@@ -51,14 +51,22 @@ function App() {
       img: './src/assets/img/Two And a Half Men.png',
     },
   ];
+  const [profiles, addProfile, loginProfile, logoutProfile] =
+    useLocalStorage('profiles');
+  const user = profiles.find((profile) => profile.isLogined);
 
-  const handleButtonClick = () => {
-    console.log('Button clicked');
-  };
-  const [user, saveUser, logOut] = useLocalStorage('user');
+  function saveUser(userData) {
+    const id = userData.id || Date.now().toString();
+    addProfile({ ...userData, id });
+  }
+
+  function logOut() {
+    logoutProfile();
+  }
+
   return (
     <div className="wrapper">
-      <Header user={ user} logOut = {logOut} />
+      <Header user={user} logOut={logOut} />
       <Headling />
       <Paragraph
         text={
@@ -67,13 +75,17 @@ function App() {
       />
       <div className="search-row">
         <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
-          <Button text={'Искать'} onClick={handleButtonClick} />
+          <Button text={'Искать'} />
         </SearchForm>
       </div>
 
       <div className="search-row">
-        <SearchForm placeholder={'Ваше имя'} logo={<FilmIcon/>} onLogin={(userData)=> saveUser(userData)}>
-          <Button text={'Войти в профиль'} onClick={handleButtonClick} />
+        <SearchForm
+          placeholder={'Ваше имя'}
+          logo={<FilmIcon />}
+          onLogin={saveUser}
+        >
+          <Button text={'Войти в профиль'} />
         </SearchForm>
       </div>
 

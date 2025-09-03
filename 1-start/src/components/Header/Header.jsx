@@ -15,7 +15,7 @@ function Header({ user, logOut }) {
               <img src="./user.svg" alt="Иконка пользователя" />
             </a>
             <div className={cs(styles.login)}>
-              <button className={cs(styles['header-btn'])} type="submit">
+              <button onClick={logOut} className={cs(styles['header-btn'])} type="submit">
                 Выйти
               </button>
             </div>
