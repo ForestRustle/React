@@ -1,21 +1,31 @@
 import styles from './Header.module.css';
 import cs from 'classnames';
+import { useContext } from 'react';
+import { UserContext } from '../context/user.context';
 
-function Header({ user, logOut }) {
+function Header() {
+  const { data, logoutProfile } = useContext(UserContext);
+  const loggedInUser = data.find((el) => el.isLogined);
+  console.log(loggedInUser);
+
   return (
     <header className={cs(styles.header)}>
       <img src="./bookmark.svg" alt="Логотип закладок" />
       <div className={cs(styles.header_links)}>
         <a href="#">Поиск фильмов</a>
         <a href="#">Мои фильмы</a>
-        {user ? (
+        {loggedInUser ? (
           <div className={cs(styles.login)}>
-            <a href="#" onClick={logOut}>
-              <span>{user.name}</span>
+            <a href="#" onClick={logoutProfile}>
+              <span>{loggedInUser.name}</span>
               <img src="./user.svg" alt="Иконка пользователя" />
             </a>
             <div className={cs(styles.login)}>
-              <button onClick={logOut} className={cs(styles['header-btn'])} type="submit">
+              <button
+                onClick={logoutProfile}
+                className={cs(styles['header-btn'])}
+                type="button"
+              >
                 Выйти
               </button>
             </div>

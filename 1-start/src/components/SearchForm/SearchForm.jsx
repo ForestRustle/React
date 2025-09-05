@@ -2,8 +2,10 @@ import styles from './SearchForm.module.css';
 import { useRef, useState } from 'react';
 import Input from '../Input/Input';
 import cs from 'classnames';
+import { UserContext } from '../context/user.context';
+import { useContext } from 'react';
 
-function SearchForm({ placeholder, onSearch, onLogin, logo, children }) {
+function SearchForm({ placeholder, onSearch, logo, children }) {
   const [inputData, setInputData] = useState('');
   const [error, setError] = useState(false);
   const fieldRef = useRef(null);
@@ -38,14 +40,15 @@ function SearchForm({ placeholder, onSearch, onLogin, logo, children }) {
       onSearch(inputData);
     }
 
-    if (onLogin) onLogin({ name: inputData });
+   addProfile({name: inputData});
 
     setInputData('');
     fieldRef.current?.focus();
   };
-
+const { data, addProfile, loginProfile } = useContext(UserContext);
   return (
     <div className={cs(styles['search-row'])}>
+     
       <form className={cs(styles['search-form'])} onSubmit={inputSubmit}>
         <div className={cs(styles['input-wrapper'])}>
           {logo && <span className={cs(styles['input-logo'])}>{logo}</span>}
@@ -53,7 +56,7 @@ function SearchForm({ placeholder, onSearch, onLogin, logo, children }) {
             type="text"
             className={cs(error && styles['error-text'])}
             placeholder={error ? 'Введите текст' : placeholder}
-            value={inputData}
+            value={ inputData}
             onChange={inputChange}
             ref={fieldRef}
             error={error}

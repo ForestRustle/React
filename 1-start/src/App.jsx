@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import SearchForm from './components/SearchForm/SearchForm';
 import Cards from './components/Cards/Cards';
 import { useLocalStorage } from './hooks/use-localStortage.hook';
+import { UserContextProvider } from './components/context/user.context';
 
 function App() {
   const dataFilms = [
@@ -65,32 +66,34 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
-      <Header user={user} logOut={logOut} />
-      <Headling />
-      <Paragraph
-        text={
-          'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'
-        }
-      />
-      <div className="search-row">
-        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
-          <Button text={'Искать'} />
-        </SearchForm>
-      </div>
+    <UserContextProvider>
+      <div className="wrapper">
+        <Header user={user} logOut={logOut} />
+        <Headling />
+        <Paragraph
+          text={
+            'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.'
+          }
+        />
+        <div className="search-row">
+          <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
+            <Button text={'Искать'} />
+          </SearchForm>
+        </div>
 
-      <div className="search-row">
-        <SearchForm
-          placeholder={'Ваше имя'}
-          logo={<FilmIcon />}
-          onLogin={saveUser}
-        >
-          <Button text={'Войти в профиль'} />
-        </SearchForm>
-      </div>
+        <div className="search-row">
+          <SearchForm
+            placeholder={'Ваше имя'}
+            logo={<FilmIcon />}
+            onLogin={saveUser}
+          >
+            <Button text={'Войти в профиль'} />
+          </SearchForm>
+        </div>
 
-      <Cards dataFilms={dataFilms} />
-    </div>
+        <Cards dataFilms={dataFilms} />
+      </div>
+    </UserContextProvider>
   );
 }
 
