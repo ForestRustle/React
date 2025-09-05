@@ -68,7 +68,7 @@ function App() {
   return (
     <UserContextProvider>
       <div className="wrapper">
-        <Header user={user} logOut={logOut} />
+        <Header/>
         <Headling />
         <Paragraph
           text={
