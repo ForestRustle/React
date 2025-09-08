@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { CardsProps } from './Cards.props';
 
 function Cards({children, dataFilms }: CardsProps) {
-  const [favorite, setFavorite] = useState<string[]>([]);
+  const [favorite, setFavorite] = useState<number[]>([]);
 
-  const addFilm = (id:string): void => {
+  const addFilm = (id:number): void => {
     setFavorite((prev) =>
       prev.includes(id)
         ? prev.filter((favId) => favId !== id) : [...prev, id]);

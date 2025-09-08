@@ -1,11 +1,11 @@
 import './App.css';
 import FilmIcon from './assets/icons/search-icon.svg';
-import Headling from './components/Headling/Headling.js';
-import Paragraph from './components/Paragraph/Paragraph.js';
-import Button from './components/Button/Button.js';
-import Header from './components/Header/Header.js';
-import SearchForm from './components/SearchForm/SearchForm.js';
-import Cards from './components/Cards/Cards.js';
+import Headling from './components/Headling/Headling.tsx';
+import Paragraph from './components/Paragraph/Paragraph.tsx';
+import Button from './components/Button/Button.tsx';
+import Header from './components/Header/Header.tsx';
+import SearchForm from './components/SearchForm/SearchForm.tsx';
+import Cards from './components/Cards/Cards.tsx';
 function App() {
   const dataFilms = [
     {
