@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(), svgr()],
   server: {
     open: true,
-    port: 3000
+    port: 3000,
+    browser: 'firefox',
   }
 });

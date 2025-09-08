@@ -2,32 +2,23 @@ import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
+import { globalIgnores } from 'eslint/config';
 import react from 'eslint-plugin-react';
 
-export default [
-  { ignores: ['dist'] },
+export default tseslint.config([
+  globalIgnores(['dist']),
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: {
-        ...globals.browser
-      },
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module'
-      }
-    },
-    settings: {
-      react: {
-        version: 'detect'
-      }
-    },
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'react': react
+      globals: globals.browser,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -46,5 +37,6 @@ export default [
       'react/prop-types': [0],
       'indent': ['error', 'tab']
     }
-  }
-];
+  },
+
+]);

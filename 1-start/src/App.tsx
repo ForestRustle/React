@@ -1,11 +1,11 @@
 import './App.css';
-import FilmIcon from './icons/search-icon.svg?react';
-import Headling from './components/Headling/Headling';
-import Paragraph from './components/Paragraph/Paragraph';
-import Button from './components/Button/Button';
-import Header from './components/Header/Header';
-import SearchForm from './components/SearchForm/SearchForm';
-import Cards from './components/Cards/Cards';
+import FilmIcon from './assets/icons/search-icon.svg';
+import Headling from './components/Headling/Headling.js';
+import Paragraph from './components/Paragraph/Paragraph.js';
+import Button from './components/Button/Button.js';
+import Header from './components/Header/Header.js';
+import SearchForm from './components/SearchForm/SearchForm.js';
+import Cards from './components/Cards/Cards.js';
 function App() {
   const dataFilms = [
     {
@@ -52,7 +52,7 @@ function App() {
   const handleButtonClick = () => {
     console.log('Button clicked');
   };
-  
+
   return (
     <div className="wrapper">
       <Header />
@@ -63,14 +63,12 @@ function App() {
         }
       />
       <div className="search-row">
-        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}
-        >
+        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
           <Button text={'Искать'} onClick={handleButtonClick} />
         </SearchForm>
         {/* <SearchForm placeholder={'Введите название'}/> */}
-        
       </div>
-      <Cards dataFilms={dataFilms}/>
+      <Cards dataFilms={dataFilms} />
     </div>
   );
 }

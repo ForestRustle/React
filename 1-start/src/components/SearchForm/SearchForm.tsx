@@ -1,14 +1,15 @@
 import './SearchForm.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { SearchFormProps } from './SearchForm.props';
 
-function SearchForm({ placeholder,onSearch, logo,children }) {
+function SearchForm({ placeholder,onSearch, logo,children }: SearchFormProps) {
   const [inputData, setInputData] = useState('');
 
-  const inputChange = (event) => {
+  const inputChange = (event:React.ChangeEvent<HTMLInputElement>) => {
     setInputData(event.target.value);
     console.log(event.target.value);
   };
-  const inputSubmit = (event) => {
+  const inputSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (onSearch) {
       onSearch(inputData);

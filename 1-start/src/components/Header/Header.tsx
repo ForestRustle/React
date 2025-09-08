@@ -1,6 +1,6 @@
+import { JSX } from 'react';
 import './Header.css';
-
-function Header() {
+function Header(): JSX.Element {
   return (
     <header className="header">
       <img src="./bookmark.svg" alt="Логотип закладок" />

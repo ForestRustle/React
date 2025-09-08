@@ -1,5 +1,7 @@
 import './Paragraph.css';
-function Paragraph({ text, fontSize }) {
+import { ParagraphProps } from './Paragraph.props';
+
+function Paragraph({ text, fontSize }: ParagraphProps) {
   const style = fontSize ? { fontSize: fontSize } : {};
   return (
     <>

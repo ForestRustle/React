@@ -1,11 +1,12 @@
 import './Cards.css';
 import { useState } from 'react';
+import { CardsProps } from './Cards.props';
 
-function Cards({ dataFilms }) {
-  const [favorite, setFavirote] = useState([]);
+function Cards({children, dataFilms }: CardsProps) {
+  const [favorite, setFavorite] = useState<string[]>([]);
 
-  const addFilm = (id) => {
-    setFavirote((prev) =>
+  const addFilm = (id:string): void => {
+    setFavorite((prev) =>
       prev.includes(id)
         ? prev.filter((favId) => favId !== id) : [...prev, id]);
   };
