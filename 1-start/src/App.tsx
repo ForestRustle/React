@@ -1,5 +1,5 @@
 import './App.css';
-import FilmIcon from './assets/icons/search-icon.svg';
+import FilmIcon  from './assets/icons/search-icon.svg';
 import Headling from './components/Headling/Headling.tsx';
 import Paragraph from './components/Paragraph/Paragraph.tsx';
 import Button from './components/Button/Button.tsx';
@@ -63,7 +63,7 @@ function App() {
         }
       />
       <div className="search-row">
-        <SearchForm placeholder={'Введите название'} logo={<FilmIcon />}>
+        <SearchForm placeholder={'Введите название'} logo={<img src={FilmIcon}></img>}>
           <Button text={'Искать'} onClick={handleButtonClick} />
         </SearchForm>
         {/* <SearchForm placeholder={'Введите название'}/> */}
