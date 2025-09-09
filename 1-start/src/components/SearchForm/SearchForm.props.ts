@@ -6,6 +6,6 @@ export interface SearchFormProps {
 	onSearch?: (value: string) => void;
   img?: string;
   logo?: string | JSX.Element;
-  children: JSX.Element;
+  children?: JSX.Element;
   title?: string
 }
