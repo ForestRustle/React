@@ -1,6 +1,7 @@
 import styles from './Header.module.css';
 import cs from 'classnames';
 import { useUserContext } from '../../components/context/user.context';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   const { data, logoutProfile } = useUserContext();
@@ -9,16 +10,18 @@ function Header() {
 
   return (
     <header className={cs(styles.header)}>
-      <img src="./bookmark.svg" alt="Логотип закладок" />
+      <Link to={'/favorites'}>
+        <img src="/bookmark.svg" alt="Логотип закладок" />
+      </Link>
       <div className={cs(styles.header_links)}>
-        <a href="#">Поиск фильмов</a>
-        <a href="#">Мои фильмы</a>
+        <NavLink to="/">Поиск фильмов</NavLink>
+        <NavLink to="/favorites">Мои фильмы</NavLink>
         {loggedInUser ? (
           <div className={cs(styles.login)}>
-            <a href="#" onClick={logoutProfile}>
+            <NavLink to="/profile" >
               <span>{loggedInUser.name}</span>
               <img src="./user.svg" alt="Иконка пользователя" />
-            </a>
+            </NavLink>
             <div className={cs(styles.login)}>
               <button
                 onClick={logoutProfile}
@@ -31,10 +34,10 @@ function Header() {
           </div>
         ) : (
           <div className={cs(styles.login)}>
-            <a href="#">
+            <NavLink to="/login">
               Войти
               <img src="./login.svg" alt="Иконка логина" />
-            </a>
+            </NavLink>
           </div>
         )}
       </div>
