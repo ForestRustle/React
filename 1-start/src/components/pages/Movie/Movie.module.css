@@ -2,8 +2,32 @@
 	margin: 0 100px;
 	max-width: 1240px;
 	padding: 20px 0;
+}
+
+.result-seacrh {
+	background-color: #20283ECC;
+	padding: 40px;
+	margin-bottom: 80px;
 	display: flex;
-	gap: 80px;
+	flex-direction: column;
+	gap: 8px;
+	border-radius: 24px;
+}
+
+.result-seacrh__title {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--search-title); 
+	margin: 0;
+}
+
+.result-seacrh__film {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 40px;
+	color: #EBEEF5;
+	margin: 0;
 }
 
 .movie-img {
@@ -26,11 +50,11 @@
 }
 
 .rating {
-	color: #FFAD49;
+	color: var(--orange-text-color);
 	display: flex;
 	align-items: center;
 	gap: 4px;
-	background: #000000A6;
+	background: var(--background-color-rating);
 	border-radius: 8px;
 	padding: 4px 8px;
 }
@@ -38,18 +62,17 @@
 .movie-description {
 	max-width: 600px;
 	margin: 0;
-	color: #8E95A9;
+	color: var(--secondary-text-color);
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 32px;
-
 }
 
 .favorite-button {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	color: #7B6EF6;
+	color: var(--button-favotite-color);
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -59,12 +82,12 @@
 	letter-spacing: 2%;
 }
 
-
-.movie-details-wrapper{
+.movie-details-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
 }
+
 .movie-details {
 	display: flex;
 	flex-direction: column;
@@ -84,4 +107,51 @@
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 32px;
+}
+
+.main-content {
+	display: flex;
+	gap: 80px;
+	margin-bottom: 40px;
+}
+
+.reviews__title {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: var(--gray-text-color);
+}
+
+.reviews__item {
+	background: #20283ECC;
+	padding: 40px;
+	border-radius: 24px;
+	max-width: 1050px;
+}
+
+.reviews__comment-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.reviews__comment-headling {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 32px;
+	color: #C3C8D4;
+}
+
+.reviews__comment-date {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: var(--secondary-text-color);
+}
+
+.reviews__comment-text {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 32px;
+	color: var(--secondary-text-color);
 }

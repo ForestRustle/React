@@ -11,10 +11,10 @@
 	position: absolute;
 	top: 16px;
 	left: 16px;
-	background: #000000A6;
+	background: var(--background-color);
 	border-radius: 8px;
 	padding: 4px;
-	color: #FFAD49;
+	color: var(--orange-text-color);
 	display: flex;
 	gap: 4px;
 	align-items: center;
@@ -33,7 +33,7 @@
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: 2%;
-	color: #7B6EF6;
+	color: var(--button-favotite-color);
 	cursor: pointer;
 	background: none;
 	border: none;
