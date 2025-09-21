@@ -1,0 +1,12 @@
+.headling {
+  margin-bottom: 24px;
+  max-width: 588px;
+}
+
+.headling-title {
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 80px;
+  margin: 0;
+  color: #EBEEF5;
+}
