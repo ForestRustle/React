@@ -7,7 +7,6 @@ import SearchForm from '../../SearchForm/SearchForm';
 import styles from './Error.module.css';
 
 export function Error() {
-  
   const { films, isLoading, error, handleSubmit } = useFilmSearch();
 
   return (
@@ -26,15 +25,24 @@ export function Error() {
       >
         <Button text={'Найти'} type="submit" />
       </SearchForm>
-      
+
       {isLoading && <div>Идет загрузка...</div>}
       {error && <div>Произошла ошибка при загрузке данных: {error}</div>}
-      {!isLoading && films.length > 0 && <Cards dataFilms={films} />}
-
-      <h2 className={styles.error__title}>Упс... Ничего не найдено</h2>
-      <p className={styles.error__text}>
-        Попробуйте изменить запрос или ввести более точное&nbsp; название фильма
-      </p>
+      {!isLoading && !error && (
+        <>
+          {films.length > 0 ? (
+            <Cards dataFilms={films} />
+          ) : (
+            <div className={styles.error__notfound}>
+              <h2 className={styles.error__title}>Упс... Ничего не найдено</h2>
+              <p className={styles.error__text}>
+                Попробуйте изменить запрос или ввести более точное&nbsp;
+                название фильма
+              </p>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
