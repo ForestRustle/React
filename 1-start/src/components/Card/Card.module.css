@@ -5,6 +5,9 @@
 	padding: 8px;
 	height: 500px;
 	width: 267px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .favorite-score {
@@ -20,12 +23,20 @@
 	align-items: center;
 }
 
+.favorite-score__cover{
+	width: 100%;
+	height: 380px;
+	object-position: center;
+	object-fit: cover;
+	display: block;
+}
+
 .card__text {
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: 2%;
-	color: #EBEEF5;
+	color: var(--grey50-color-text);
 }
 
 .card__button {

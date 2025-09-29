@@ -2,25 +2,25 @@ import './SearchForm.css';
 import React, { useState } from 'react';
 import { SearchFormProps } from './SearchForm.props';
 
-function SearchForm({ placeholder, onSearch, logo, children, value, onInputChange }: SearchFormProps) {
-  const inputSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+function SearchForm({ placeholder, onSearch, logo, children }: SearchFormProps) {
+  const [inputData, setInputData] = useState('');
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(onSearch) {
-      onSearch(inputData);
+      onSearch(inputData.trim());
     } 
   };
-  const [inputData, setInputData] = useState('');
   
   return (
-    <form className="search-form" onSubmit={inputSubmit}>
+    <form className="search-form" onSubmit={handleSubmit}>
       <div className="input-wrapper">
         {logo && <span className='input-logo'>{logo}</span>}
       <input
         type="text"
         className="search-form__input"
         placeholder={placeholder}
-        value={value}
-        onChange={onInputChange}
+        value={inputData}
+        onChange={(e)=> setInputData(e.target.value)}
         />
       {children}
       </div>

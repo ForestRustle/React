@@ -1,6 +1,7 @@
 .headling {
   margin-bottom: 24px;
   max-width: 588px;
+  text-align: left;
 }
 
 .headling-title {
@@ -8,5 +9,5 @@
   font-size: 64px;
   line-height: 80px;
   margin: 0;
-  color: #EBEEF5;
+  color: var(--grey50-color-text);
 }

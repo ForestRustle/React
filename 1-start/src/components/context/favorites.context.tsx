@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export interface FavoriteMovie {
-  id: number;
+  id: string;
 	title: string;
   img: string;
   rating: number
@@ -10,7 +10,7 @@ export interface FavoriteMovie {
 interface FavoritesContextType {
   favorites: FavoriteMovie[];
   toggleFavorite: (movie: FavoriteMovie) => void;
-  isFavorite: (id: number) => boolean;
+  isFavorite: (id: string) => boolean;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
@@ -43,7 +43,7 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
    );
  };
 
-  const isFavorite = (id: number) => favorites.some((fav) => fav.id === id);
+  const isFavorite = (id: string) => favorites.some((fav) => fav.id === id);
 
   return (
     <FavoritesContext.Provider

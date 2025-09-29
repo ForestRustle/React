@@ -8,7 +8,6 @@ function Header() {
   const { data, logoutProfile } = useUserContext();
   const { favorites} = useFavorites();
   const loggedInUser = data.find((el) => el.isLogined);
-  console.log(loggedInUser);
 
   return (
     <header className={cs(styles.header)}>
@@ -40,7 +39,7 @@ function Header() {
           <div className={cs(styles.login)}>
             <NavLink to="/login">
               Войти
-              <img src="./login.svg" alt="Иконка логина" />
+              <img src="/login.svg" alt="Иконка логина" />
             </NavLink>
           </div>
         )}
