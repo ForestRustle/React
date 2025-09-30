@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         path: 'movie/:id',
         element: <Movie />,
         loader: async ({ params }) => {
-          const { data } = await axios.get(`${GetDetails}/${params.id}`);
+          const { data } = await axios.get(`${GetDetails}${params.id}`);
           console.log(params.id);
           console.log(data);
           
