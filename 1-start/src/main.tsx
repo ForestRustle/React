@@ -13,22 +13,32 @@ import { FavoritesProvider } from './components/context/favorites.context.tsx';
 import axios from 'axios';
 import { GetDetails, Search } from './helpers/API.ts';
 import { mapApiToFilmDetails } from './helpers/details.mappers.ts';
+import { RequireAuth } from './helpers/RequireAuth.tsx';
+import { AuthLayout } from './components/Layout/MainLayout/AuthLayout.tsx';
 
 const router = createBrowserRouter([
   {
+    element: <AuthLayout />,
+    children: [
+      {
+      path: '/login',
+      element: <Login />
+    }],
+  },
+  {
     path: '/',
-    element: <Layout />,
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
     children: [
       { index: true, element: <Home /> },
-      { path: 'login', element: <Login /> },
       {
         path: 'movie/:id',
         element: <Movie />,
         loader: async ({ params }) => {
           const { data } = await axios.get(`${GetDetails}${params.id}`);
-          console.log(params.id);
-          console.log(data);
-          
           return mapApiToFilmDetails(data);
         },
         errorElement: <ErrorPage />,
