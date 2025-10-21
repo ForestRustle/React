@@ -5,7 +5,7 @@ import cn from 'classnames';
 
 function Button({text, onClick, children,...props}:ButtonProps) {
   return (
-      <button className={cn(styles.search)} onClick={onClick}{...props}>{children ?? text}</button>
+      <button className={cn(styles.search)} onClick={onClick}{...props} >{children ?? text}</button>
   );
 }
 

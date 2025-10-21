@@ -3,7 +3,7 @@ import { useFavorites } from '../context/favorites.context';
 import { Link } from 'react-router-dom';
 
 interface Film {
-  id: number;
+  id: string;
   title: string;
   img: string;
   rating: number;
@@ -24,7 +24,11 @@ export function Card({ film }: CardProps) {
           <img src="./src/assets/star.svg" alt="Рейтинг" />
           <span>{film.rating}</span>
         </div>
-        <img src={film.img} alt={film.title} />
+        <img
+          src={film.img}
+          alt={film.title}
+          className={styles['favorite-score__cover']}
+        />
         <p className={styles.card__text}>{film.title}</p>
       </Link>
       <button

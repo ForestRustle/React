@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 export interface Film {
-  id: number;
+  id: string;
   title: string;
   img: string;
   rating: number;

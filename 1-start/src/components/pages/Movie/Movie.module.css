@@ -18,7 +18,7 @@
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 16px;
-	color: var(--search-title); 
+	color: var(--search-title);
 	margin: 0;
 }
 
@@ -26,7 +26,7 @@
 	font-weight: 600;
 	font-size: 32px;
 	line-height: 40px;
-	color: #EBEEF5;
+	color: var(--grey50-color-text);
 	margin: 0;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .movie-details__title {
-	color: #767E94;
+	color: var(--grey-text-color);
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
@@ -119,7 +119,7 @@
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 24px;
-	color: var(--gray-text-color);
+	color: var(--grey-text-color);
 }
 
 .reviews__item {

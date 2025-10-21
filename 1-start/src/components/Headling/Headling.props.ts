@@ -1,3 +1,5 @@
 export type HeadlingProps = {
-	title: string
-}
+  title: string;
+	text?: React.ReactNode;
+	children?: React.ReactNode;
+};

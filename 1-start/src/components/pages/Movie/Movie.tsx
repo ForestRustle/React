@@ -1,17 +1,11 @@
-import { useParams } from 'react-router-dom';
+import {useLoaderData } from 'react-router-dom';
 import styles from './Movie.module.css';
-import { CardsProps } from '../../Cards/Cards.props';
 import { useFavorites } from '../../context/favorites.context';
+import { Film } from '../../../interface/film.interface';
 
-type MovieProps = Pick<CardsProps, 'dataFilms'>;
-
-export function Movie({ dataFilms }: MovieProps) {
+export function Movie() {
+  const movie = useLoaderData() as Film;
   const { toggleFavorite, isFavorite } = useFavorites();
-  const { id } = useParams();
-  if (!dataFilms || !Array.isArray(dataFilms)) {
-    return <div>Фильмы не найдены</div>;
-  }
-  const movie = dataFilms.find((dataFilms) => dataFilms.id === Number(id));
 
   if (!movie) {
     return (
@@ -36,13 +30,7 @@ export function Movie({ dataFilms }: MovieProps) {
           alt={`Постер фильма ${movie.title}`}
         />
         <div className={styles['movie-info']}>
-          <p className={styles['movie-description']}>
-            After the devastating events of Avengers: Infinity War, the universe
-            is in ruins due to the efforts of the Mad Titan, Thanos. With the
-            help of remaining allies, the Avengers must assemble once more in
-            order to undo Thanos' actions and restore order to the universe once
-            and for all, no matter what consequences may be in store.
-          </p>
+          <p className={styles['movie-description']}>{movie.description}</p>
           <div className={styles['movie-rating']}>
             <span className={styles.rating}>
               <img src="/src/assets/star.svg" alt="Иконка избранного" />
@@ -67,20 +55,22 @@ export function Movie({ dataFilms }: MovieProps) {
           <div className={styles['movie-details-wrapper']}>
             <div className={styles['movie-details']}>
               <p className={styles['movie-details__title']}>Тип</p>
-              <p className={styles['movie-details__text']}>Movie</p>
+              <p className={styles['movie-details__text']}>{movie.title}</p>
             </div>
             <div className={styles['movie-details']}>
               <p className={styles['movie-details__title']}>Дата выхода</p>
-              <p className={styles['movie-details__text']}>2019-04-24</p>
+              <p className={styles['movie-details__text']}>{movie.year}</p>
             </div>
             <div className={styles['movie-details']}>
               <p className={styles['movie-details__title']}>Длительность</p>
-              <p className={styles['movie-details__text']}>181 мин</p>
+              <p className={styles['movie-details__text']}>
+                {movie.duration} мин
+              </p>
             </div>
             <div className={styles['movie-details']}>
               <p className={styles['movie-details__title']}>Жанр</p>
               <p className={styles['movie-details__text']}>
-                Adventure, Science Fiction, Action
+                {movie.genre?.join(', ')}
               </p>
             </div>
           </div>
@@ -89,25 +79,23 @@ export function Movie({ dataFilms }: MovieProps) {
 
       <div className={styles['reviews']}>
         <h2 className={styles['reviews__title']}>Отзывы</h2>
-        <div className={styles['reviews__item']}>
-          <div className={styles['reviews__comment-header']}>
-            <p className={styles['reviews__comment-headling']}>
-              Not as good as infinity war..
-            </p>
-            <p className={styles['reviews__comment-date']}>2019-04-29</p>
+        {movie.reviews?.map((review, index) => (
+          <div key={index} className={styles['reviews__item']}>
+            <div className={styles['reviews__comment-header']}>
+              <p className={styles['reviews__comment-headling']}>
+                {review.title || 'Без названия'}
+              </p>
+              <p className={styles['reviews__comment-date']}>
+                {review.date || 'Дата неизвестна'}
+              </p>
+            </div>
+            <div className={styles['reviews__comment']}>
+              <p className={styles['reviews__comment-text']}>
+                {review.text || 'Отзыв отсутствует'}
+              </p>
+            </div>
           </div>
-          <div className={styles['reviews__comment']}>
-            <p className={styles['reviews__comment-text']}>
-              But its a pretty good film. A bit of a mess in some parts, lacking
-              the cohesive and effortless feel infinity war somehow managed to
-              accomplish. Some silly plot holes and characters that
-              could&apos;ve been cut (Ahem, captain marvel and thanos). The use
-              of Captain marvel in this film was just ridiculous. Shes there at
-              the start, bails for some reason? And then pops up at the end to
-              serve no purpose but deux ex machina a space ship...
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

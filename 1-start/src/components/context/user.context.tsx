@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useLocalStorage } from '../../hooks/use-localStortage.hook';
 import { useContext } from 'react';
 
@@ -10,8 +10,8 @@ interface Profile {
 
 interface UserContextType {
   data: Profile[];
-  addProfile: (newProfile: Omit<Profile, 'isLogined'>) => void;
-  loginProfile: (profileId: string) => void;
+  addProfile: (profile:Profile) => void;
+  currentUser: Profile | null;
   logoutProfile: () => void;
 }
 
@@ -28,12 +28,34 @@ export function useUserContext() {
 }
 
 export const UserContextProvider = ({ children }: { children: ReactNode }) => {
-  const [data, addProfile, loginProfile, logoutProfile] =
-    useLocalStorage('profiles');
+  const [data, setData] = useState<Profile[]>([])
+  const [currentUser, setCurrentUser] = useState<Profile | null>(null)
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      const parseUser: Profile = JSON.parse(storedUser);
+      setData([parseUser]);
+      setCurrentUser(parseUser);
+    }
+  }, [])
+  const addProfile = (profile: Profile) => { 
+    const updated = [{ ...profile, isLogined: true }]
+    setData(updated);
+    setCurrentUser(profile);
+    localStorage.setItem('currentUser', JSON.stringify(profile));
+  }
+  const logoutProfile = () => { 
+    setData([]);
+    setCurrentUser(null);
+    localStorage.removeItem('currentUser');
+  }
   return (
     <UserContext.Provider
-      value={{ data, addProfile, loginProfile, logoutProfile }}
+      value={{
+        data, addProfile, logoutProfile,
+        currentUser
+       }}
     >
       {children}
     </UserContext.Provider>
