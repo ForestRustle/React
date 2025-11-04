@@ -1,21 +1,31 @@
-import styles from './Favorites.module.css';
-import { useFavorites } from '../../context/favorites.context';
-import { Card } from '../../Card/Card';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../store/store';
+import { clearFavorites } from '../../../store/favorites.slice';
+import Cards from '../../Cards/Cards';
+import Button from '../../Button/Button';
+import Headling from '../../Headling/Headling';
+import Paragraph from '../../Paragraph/Paragraph';
 
 export function Favorites() {
-  const { favorites } = useFavorites();
+  const dispatch = useDispatch();
+  const { items: favorites, userName } = useSelector(
+    (state: RootState) => state.favorites
+  );
+
+  const handleClear = () => {
+    dispatch(clearFavorites());
+  };
 
   return (
-    <div className={styles['favorites-wrapper']}>
-      <h1>Избранное</h1>
+    <div>
+      <Headling title="Избранное" />
       {favorites.length === 0 ? (
-        <p>Нет избранных фильмов</p>
+        <Paragraph text="У вас пока нет избранных фильмов." />
       ) : (
-        <div className={styles['favorites-list']}>
-            {favorites.map((film) => (
-            <Card film={film} key={film.id}></Card>
-          ))}
-        </div>
+        <>
+          <Button text="Очистить избранное" onClick={handleClear} />
+          <Cards dataFilms={favorites} />
+        </>
       )}
     </div>
   );

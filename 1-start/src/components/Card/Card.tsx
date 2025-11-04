@@ -1,27 +1,32 @@
 import styles from './Card.module.css';
-import { useFavorites } from '../context/favorites.context';
 import { Link } from 'react-router-dom';
-
-interface Film {
-  id: string;
-  title: string;
-  img: string;
-  rating: number;
-}
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { toggleFavorite } from '../../store/favorites.slice';
+import { Film } from '../../interface/film.interface';
 
 interface CardProps {
   film: Film;
 }
 
 export function Card({ film }: CardProps) {
-  const { toggleFavorite, isFavorite } = useFavorites();
-  const favorite = isFavorite(film.id);
+  const dispatch = useDispatch();
+
+  const { items: favorites } = useSelector(
+    (state: RootState) => state.favorites
+  );
+
+  const isFavorite = favorites.some((f) => f.id === film.id);
+
+  const handleToggle = () => {
+    dispatch(toggleFavorite(film));
+  };
 
   return (
     <div className={styles.card}>
       <Link to={`/movie/${film.id}`}>
         <div className={styles['favorite-score']}>
-          <img src="./src/assets/star.svg" alt="Рейтинг" />
+          <img src="/star.svg" alt="Рейтинг" />
           <span>{film.rating}</span>
         </div>
         <img
@@ -31,16 +36,13 @@ export function Card({ film }: CardProps) {
         />
         <p className={styles.card__text}>{film.title}</p>
       </Link>
-      <button
-        onClick={() => toggleFavorite(film)}
-        className={styles.card__button}
-      >
+      <button onClick={handleToggle} className={styles.card__button}>
         <img
-          src={favorite ? './src/assets/favorite.svg' : './src/assets/like.svg'}
+          src={isFavorite ? '/favorite.svg' : '/like.svg'}
           alt="Добавить в избранное"
           className={styles.like}
         />
-        {favorite ? 'В избранном' : 'Добавить в избранное'}
+        {isFavorite ? 'В избранном' : 'Добавить в избранное'}
       </button>
     </div>
   );

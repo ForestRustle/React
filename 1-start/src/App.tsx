@@ -8,49 +8,17 @@ import SearchForm from './components/SearchForm/SearchForm.tsx';
 import Cards from './components/Cards/Cards.tsx';
 import { useLocalStorage } from './hooks/use-localStortage.hook';
 import { UserContextProvider } from './components/context/user.context';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from './store/store.ts';
+import { use, useEffect } from 'react';
+import { restoreUserWithFavorites } from './store/user.slice.ts';
 function App() {
-  const dataFilms = [
-    {
-      id: 1,
-      title: 'Black Widow',
-      img: './src/assets/img/Black_Widow.png',
-    },
-    {
-      id: 2,
-      title: 'Shang Chi',
-      img: './src/assets/img/Schang Chi.png',
-    },
-    {
-      id: 3,
-      title: 'Loki',
-      img: './src/assets/img/Loki.png',
-    },
-    {
-      id: 4,
-      title: 'How I Met Your Mother',
-      img: './src/assets/img/How_I_Met_Your_Mother.png',
-    },
-    {
-      id: 5,
-      title: 'Money Heist',
-      img: './src/assets/img/Money Heist.png',
-    },
-    {
-      id: 6,
-      title: 'Friends',
-      img: './src/assets/img/Friends.png',
-    },
-    {
-      id: 7,
-      title: 'The Big Bang Theory',
-      img: './src/assets/img/The Big Bang Theory.png',
-    },
-    {
-      id: 8,
-      title: 'Two And a Half Men',
-      img: './src/assets/img/Two And a Half Men.png',
-    },
-  ];
+  const dispatch = useDispatch<AppDispatch>();
+  
+  useEffect(() => {
+    dispatch(restoreUserWithFavorites());
+  }, [dispatch]);
+  
   const handleButtonClick = () => {
     console.log('Button clicked');
   };
