@@ -1,21 +1,19 @@
 import styles from './Card.module.css';
 import { useFavorites } from '../context/favorites.context';
 import { Link } from 'react-router-dom';
-
-interface Film {
-  id: string;
-  title: string;
-  img: string;
-  rating: number;
-}
+import { Film } from '../../interface/film.interface';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { toggleFavorites } from '../../store/favorites.slice';
 
 interface CardProps {
   film: Film;
 }
 
 export function Card({ film }: CardProps) {
-  const { toggleFavorite, isFavorite } = useFavorites();
-  const favorite = isFavorite(film.id);
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: RootState) => state.favorites.items);
+  const favorite = favorites.some((f) => f.id === film.id);
 
   return (
     <div className={styles.card}>
@@ -32,7 +30,7 @@ export function Card({ film }: CardProps) {
         <p className={styles.card__text}>{film.title}</p>
       </Link>
       <button
-        onClick={() => toggleFavorite(film)}
+        onClick={() => dispatch(toggleFavorites(film))}
         className={styles.card__button}
       >
         <img

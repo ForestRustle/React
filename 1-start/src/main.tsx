@@ -15,15 +15,18 @@ import { GetDetails, Search } from './helpers/API.ts';
 import { mapApiToFilmDetails } from './helpers/details.mappers.ts';
 import { RequireAuth } from './helpers/RequireAuth.tsx';
 import { AuthLayout } from './components/Layout/MainLayout/AuthLayout.tsx';
+import { Provider } from 'react-redux';
+import { store } from './store/store.ts';
 
 const router = createBrowserRouter([
   {
     element: <AuthLayout />,
     children: [
       {
-      path: '/login',
-      element: <Login />
-    }],
+        path: '/login',
+        element: <Login />,
+      },
+    ],
   },
   {
     path: '/',
@@ -51,10 +54,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <FavoritesProvider>
-      <UserContextProvider>
-        <RouterProvider router={router} />
-      </UserContextProvider>
-    </FavoritesProvider>
+    <Provider store={store}>
+      <FavoritesProvider>
+          <RouterProvider router={router} />
+      </FavoritesProvider>
+    </Provider>
   </StrictMode>
 );
