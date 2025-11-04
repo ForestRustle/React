@@ -1,35 +1,38 @@
 import { useState } from 'react';
-import Button from '../../Button/Button';
-import Headling from '../../Headling/Headling';
-import SearchForm from '../../SearchForm/SearchForm';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../store/user.slice';
-import { useNavigate } from 'react-router-dom';
+import Button from '../../Button/Button';
+import SearchForm from '../../SearchForm/SearchForm';
+import Headling from '../../Headling/Headling';
+import Paragraph from '../../Paragraph/Paragraph';
 
 export function Login() {
-  const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleLogin = (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (name.trim().length === 0) return;
-    dispatch(setUser({ name, email: '' }));
+  const handleLogin = () => {
+    if (!name.trim()) return;
+    dispatch(setUser({ name, email }));
     setName('');
-    navigate('/');
+    setEmail('');
   };
 
   return (
     <div>
-      <Headling title={'Вход'} />
+      <Headling title="Вход" />
+      <Paragraph text="Введите имя и email для входа" />
       <SearchForm
-        placeholder={'Ваше имя'}
+        placeholder="Ваше имя"
         value={name}
         onInputChange={(e) => setName(e.target.value)}
-        onSearch={() => handleLogin()}
-      >
-        <Button onClick={handleLogin} text={'Войти в профиль'} />
-      </SearchForm>
+      />
+      <SearchForm
+        placeholder="Ваш email"
+        value={email}
+        onInputChange={(e) => setEmail(e.target.value)}
+      />
+      <Button text="Войти в профиль" onClick={handleLogin} />
     </div>
   );
 }
